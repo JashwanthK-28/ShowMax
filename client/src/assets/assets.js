@@ -40,36 +40,11 @@ export const dummyTrailers = [
   },
 ];
 
-const dummyCastsData = [
-  {
-    name: "Shah Rukh Khan",
-    profile_path:
-      "https://m.media-amazon.com/images/M/MV5BODk3OWIyY2MtM2E0MS00OWYyLTlkNDktMzY4MTE1MDhiYzBiXkEyXkFqcGc@._V1_.jpg",
-  },
+const rrrCastsData = [
   {
     name: "Ram Charan",
     profile_path:
       "https://m.media-amazon.com/images/M/MV5BZWY1NTQyMWItMWU2OS00NWMwLWFlN2MtMDZlYzEwZmU3MTYzXkEyXkFqcGc@._V1_.jpg",
-  },
-  {
-    name: "Prabhas",
-    profile_path:
-      "https://m.media-amazon.com/images/M/MV5BZTA0MzU0YzItZWRjZC00YzllLWFmYjMtZWYzZDgyYzRjYTg5XkEyXkFqcGc@._V1_.jpg",
-  },
-  {
-    name: "Yash",
-    profile_path:
-      "https://m.media-amazon.com/images/M/MV5BYWM5OTZhZWUtYzViOC00YWQxLTg5NzEtMWE2MzVhMmI4M2UxXkEyXkFqcGc@._V1_.jpg",
-  },
-  {
-    name: "Aamir Khan",
-    profile_path:
-      "https://m.media-amazon.com/images/M/MV5BMjAwMjk3NDUzN15BMl5BanBnXkFtZTcwNjI4MTY0NA@@._V1_.jpg",
-  },
-  {
-    name: "Allu Arjun",
-    profile_path:
-      "https://m.media-amazon.com/images/M/MV5BOGJkMzRiYmQtOTVjNy00MWU3LTg5YjctNjcwMmZlNGIwMjhmXkEyXkFqcGc@._V1_.jpg",
   },
   {
     name: "N. T. Rama Rao Jr.",
@@ -77,24 +52,42 @@ const dummyCastsData = [
       "https://m.media-amazon.com/images/M/MV5BMjI0NDQ2MTMzMF5BMl5BanBnXkFtZTgwMzc4MDA3NzE@._V1_.jpg",
   },
   {
-    name: "Deepika Padukone",
-    profile_path:
-      "https://m.media-amazon.com/images/M/MV5BYmNlZTQzMjQtODEwZi00MjljLTgzNDktY2Q1MmY0N2Q4ZTQzXkEyXkFqcGc@._V1_.jpg",
-  },
-  {
     name: "Alia Bhatt",
     profile_path:
       "https://m.media-amazon.com/images/M/MV5BZTM0ZDE0NTgtNDEyNC00ZmVlLTk0ODAtNTM0ZjUwNjRkZDBmXkEyXkFqcGc@._V1_.jpg",
   },
   {
-    name: "Priyanka Chopra",
+    name: "Ajay Devgn",
     profile_path:
-      "https://m.media-amazon.com/images/M/MV5BMjAxNzUwNjExOV5BMl5BanBnXkFtZTcwNDUyMTUxNw@@._V1_.jpg",
+      "https://ui-avatars.com/api/?name=Ajay+Devgn&background=random&color=fff&size=512",
   },
   {
-    name: "Samantha Ruth Prabhu",
+    name: "Shriya Saran",
     profile_path:
-      "https://m.media-amazon.com/images/M/MV5BNDBiYTM4MjItMmMyYi00ZDkxLTllZjctMDA2NmYwN2M5YTY0XkEyXkFqcGc@._V1_.jpg",
+      "https://ui-avatars.com/api/?name=Shriya+Saran&background=random&color=fff&size=512",
+  },
+  {
+    name: "Ray Stevenson",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Ray+Stevenson&background=random&color=fff&size=512",
+  },
+  {
+    name: "Alison Doody",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Alison+Doody&background=random&color=fff&size=512",
+  },
+  {
+    name: "Olivia Morris",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Olivia+Morris&background=random&color=fff&size=512",
+  },
+];
+
+const baahubaliCastsData = [
+  {
+    name: "Prabhas",
+    profile_path:
+      "https://m.media-amazon.com/images/M/MV5BZTA0MzU0YzItZWRjZC00YzllLWFmYjMtZWYzZDgyYzRjYTg5XkEyXkFqcGc@._V1_.jpg",
   },
   {
     name: "Anushka Shetty",
@@ -102,19 +95,141 @@ const dummyCastsData = [
       "https://m.media-amazon.com/images/M/MV5BODY0ZTBjMmMtYWFhYi00ZTkxLWI0OTItNTkxMmY1MDhhMWE2XkEyXkFqcGc@._V1_.jpg",
   },
   {
+    name: "Rana Daggubati",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Rana+Daggubati&background=random&color=fff&size=512",
+  },
+  {
+    name: "Tamannaah Bhatia",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Tamannaah+Bhatia&background=random&color=fff&size=512",
+  },
+  {
+    name: "Ramya Krishnan",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Ramya+Krishnan&background=random&color=fff&size=512",
+  },
+  {
+    name: "Sathyaraj",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Sathyaraj&background=random&color=fff&size=512",
+  },
+  {
+    name: "Nassar",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Nassar&background=random&color=fff&size=512",
+  },
+];
+
+const pushpaCastsData = [
+  {
+    name: "Allu Arjun",
+    profile_path:
+      "https://m.media-amazon.com/images/M/MV5BOGJkMzRiYmQtOTVjNy00MWU3LTg5YjctNjcwMmZlNGIwMjhmXkEyXkFqcGc@._V1_.jpg",
+  },
+  {
     name: "Rashmika Mandanna",
     profile_path:
       "https://m.media-amazon.com/images/M/MV5BMzNlMTI2YjgtY2ZlOC00NzMwLTlhYWQtNTBjNjRkNjAzYmZmXkEyXkFqcGc@._V1_.jpg",
   },
   {
-    name: "Katrina Kaif",
+    name: "Fahadh Faasil",
     profile_path:
-      "https://m.media-amazon.com/images/M/MV5BMjI0Nzc4OTE0NV5BMl5BanBnXkFtZTgwOTczODgyNDM@._V1_.jpg",
+      "https://ui-avatars.com/api/?name=Fahadh+Faasil&background=random&color=fff&size=512",
   },
   {
-    name: "Kareena Kapoor Khan",
+    name: "Sunil",
     profile_path:
-      "https://m.media-amazon.com/images/M/MV5BMjAyNjM4NTAwN15BMl5BanBnXkFtZTcwNDkxNzQzNg@@._V1_.jpg",
+      "https://ui-avatars.com/api/?name=Sunil&background=random&color=fff&size=512",
+  },
+  {
+    name: "Anasuya Bharadwaj",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Anasuya+Bharadwaj&background=random&color=fff&size=512",
+  },
+  {
+    name: "Rao Ramesh",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Rao+Ramesh&background=random&color=fff&size=512",
+  },
+];
+
+const jawanCastsData = [
+  {
+    name: "Shah Rukh Khan",
+    profile_path:
+      "https://m.media-amazon.com/images/M/MV5BODk3OWIyY2MtM2E0MS00OWYyLTlkNDktMzY4MTE1MDhiYzBiXkEyXkFqcGc@._V1_.jpg",
+  },
+  {
+    name: "Deepika Padukone",
+    profile_path:
+      "https://m.media-amazon.com/images/M/MV5BYmNlZTQzMjQtODEwZi00MjljLTgzNDktY2Q1MmY0N2Q4ZTQzXkEyXkFqcGc@._V1_.jpg",
+  },
+  {
+    name: "Nayanthara",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Nayanthara&background=random&color=fff&size=512",
+  },
+  {
+    name: "Vijay Sethupathi",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Vijay+Sethupathi&background=random&color=fff&size=512",
+  },
+  {
+    name: "Sanya Malhotra",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Sanya+Malhotra&background=random&color=fff&size=512",
+  },
+  {
+    name: "Sunil Grover",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Sunil+Grover&background=random&color=fff&size=512",
+  },
+  {
+    name: "Priyamani",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Priyamani&background=random&color=fff&size=512",
+  },
+];
+
+const kgfCastsData = [
+  {
+    name: "Yash",
+    profile_path:
+      "https://m.media-amazon.com/images/M/MV5BYWM5OTZhZWUtYzViOC00YWQxLTg5NzEtMWE2MzVhMmI4M2UxXkEyXkFqcGc@._V1_.jpg",
+  },
+  {
+    name: "Sanjay Dutt",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Sanjay+Dutt&background=random&color=fff&size=512",
+  },
+  {
+    name: "Raveena Tandon",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Raveena+Tandon&background=random&color=fff&size=512",
+  },
+  {
+    name: "Srinidhi Shetty",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Srinidhi+Shetty&background=random&color=fff&size=512",
+  },
+  {
+    name: "Prakash Raj",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Prakash+Raj&background=random&color=fff&size=512",
+  },
+];
+
+const pathaanCastsData = [
+  {
+    name: "Shah Rukh Khan",
+    profile_path:
+      "https://m.media-amazon.com/images/M/MV5BODk3OWIyY2MtM2E0MS00OWYyLTlkNDktMzY4MTE1MDhiYzBiXkEyXkFqcGc@._V1_.jpg",
+  },
+  {
+    name: "Deepika Padukone",
+    profile_path:
+      "https://m.media-amazon.com/images/M/MV5BYmNlZTQzMjQtODEwZi00MjljLTgzNDktY2Q1MmY0N2Q4ZTQzXkEyXkFqcGc@._V1_.jpg",
   },
   {
     name: "Salman Khan",
@@ -122,9 +237,19 @@ const dummyCastsData = [
       "https://m.media-amazon.com/images/M/MV5BMjMwNTIxODg0OF5BMl5BanBnXkFtZTgwODg2NzM0OTE@._V1_.jpg",
   },
   {
-    name: "Hrithik Roshan",
+    name: "John Abraham",
     profile_path:
-      "https://m.media-amazon.com/images/M/MV5BYmM3NmUwOWEtODU5OS00MjM4LWExN2MtYzVhNWZlZWMyZjE0XkEyXkFqcGc@._V1_.jpg",
+      "https://ui-avatars.com/api/?name=John+Abraham&background=random&color=fff&size=512",
+  },
+  {
+    name: "Dimple Kapadia",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Dimple+Kapadia&background=random&color=fff&size=512",
+  },
+  {
+    name: "Ashutosh Rana",
+    profile_path:
+      "https://ui-avatars.com/api/?name=Ashutosh+Rana&background=random&color=fff&size=512",
   },
 ];
 
@@ -143,7 +268,7 @@ export const dummyShowsData = [
       { id: 28, name: "Action" },
       { id: 18, name: "Drama" },
     ],
-    casts: dummyCastsData,
+    casts: rrrCastsData,
     release_date: "2022-03-24",
     original_language: "te",
     tagline: "Rise, Roar, Revolt.",
@@ -156,7 +281,7 @@ export const dummyShowsData = [
     id: 1232546,
     title: "Baahubali 2: The Conclusion",
     overview:
-      "When Shiva, the son of Bahubali, learns about his heritage, he begins to look for answers. His story is juxtaposed with past events that unfolded in the Mahishmati Kingdom.",
+      "When Shivudu, the son of Bahubali, learns about his heritage, he begins to look for answers. His story is juxtaposed with past events that unfolded in the Mahishmati Kingdom.",
     poster_path:
       "https://m.media-amazon.com/images/M/MV5BNTRhYTlhZTgtYmMyYy00NWI4LTk4MzItOWM2YjBmYTg2OTI2XkEyXkFqcGc@._V1_.jpg",
     backdrop_path:
@@ -166,7 +291,7 @@ export const dummyShowsData = [
       { id: 12, name: "Adventure" },
       { id: 14, name: "Fantasy" },
     ],
-    casts: dummyCastsData,
+    casts: baahubaliCastsData,
     release_date: "2017-04-27",
     original_language: "te",
     tagline: "The conclusion.",
@@ -189,7 +314,7 @@ export const dummyShowsData = [
       { id: 80, name: "Crime" },
       { id: 18, name: "Drama" },
     ],
-    casts: dummyCastsData,
+    casts: pushpaCastsData,
     release_date: "2021-12-16",
     original_language: "te",
     tagline: "The Rise.",
@@ -211,7 +336,7 @@ export const dummyShowsData = [
       { id: 28, name: "Action" },
       { id: 53, name: "Thriller" },
     ],
-    casts: dummyCastsData,
+    casts: jawanCastsData,
     release_date: "2023-09-07",
     original_language: "hi",
     tagline: "Ready.",
@@ -234,7 +359,7 @@ export const dummyShowsData = [
       { id: 80, name: "Crime" },
       { id: 18, name: "Drama" },
     ],
-    casts: dummyCastsData,
+    casts: kgfCastsData,
     release_date: "2022-04-14",
     original_language: "kn",
     tagline: "The Monster arriving...",
@@ -256,7 +381,7 @@ export const dummyShowsData = [
       { id: 28, name: "Action" },
       { id: 53, name: "Thriller" },
     ],
-    casts: dummyCastsData,
+    casts: pathaanCastsData,
     release_date: "2023-01-25",
     original_language: "hi",
     tagline: "Fasten your seatbelts.",
