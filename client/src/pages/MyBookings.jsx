@@ -46,6 +46,30 @@ const MyBookings = () => {
               </p>
             </div>
           </div>
+
+          <div className="flex flex-col md:items-end md:text-right justify-between p-4">
+            <div className="flex items-center gap-4">
+              <p className="text-2xl font-semibold mb-3">
+                {currency}
+                {item.amount}
+              </p>
+              {!item.isPaid && (
+                <button className="bg-primary px-4 py-1.5 mb-3 text-sm rounded-full font-medium cursor-pointer">
+                  Pay now
+                </button>
+              )}
+            </div>
+            <div className="text-sm">
+              <p>
+                <span className="text-gray-400">Total tickets:</span>
+                {item.bookedSeats.length}
+              </p>
+              <p>
+                <span className="text-gray-400">Seat number:</span>
+                {item.bookedSeats.join(", ")}
+              </p>
+            </div>
+          </div>
         </div>
       ))}
     </div>
