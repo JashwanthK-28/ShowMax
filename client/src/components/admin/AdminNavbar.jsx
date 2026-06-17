@@ -12,6 +12,10 @@ const AdminNavbar = () => {
       </Link>
       <Link
         to={"/"}
+        onClick={() => {
+          localStorage.removeItem("admin-token");
+          toast.success("Admin Logged Out");
+        }}
         className="px-4 py-1.5 sm:px-6 sm:py-2 bg-gray-800 hover:bg-gray-700 text-white transition rounded-full font-medium cursor-pointer border border-gray-600 text-sm flex items-center justify-center"
       >
         <LogOut width={15} height={15} className="mr-2" />

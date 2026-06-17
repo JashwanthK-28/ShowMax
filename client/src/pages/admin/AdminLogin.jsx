@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { assets } from "../assets/assets";
+import { assets } from "../../assets/assets";
 
 const AdminLogin = () => {
   const [username, setUsername] = useState("");
@@ -11,6 +11,7 @@ const AdminLogin = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     if (username === "admin" && password === "admin123") {
+      localStorage.setItem("admin-token", "true");
       toast.success("Admin Sign In successful");
       navigate("/admin");
     } else {

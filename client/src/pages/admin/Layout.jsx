@@ -1,9 +1,15 @@
 import React from "react";
 import AdminNavbar from "../../components/admin/AdminNavbar";
 import AdminSidebar from "../../components/admin/AdminSidebar";
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 
 const Layout = () => {
+  const token = localStorage.getItem("admin-token");
+
+  if (!token) {
+    return <Navigate to="/admin-login" replace />;
+  }
+
   return (
     <>
       <AdminNavbar />
