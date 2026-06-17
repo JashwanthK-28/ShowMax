@@ -9,6 +9,7 @@ import SeatLayout from "./pages/SeatLayout";
 import MyBookings from "./pages/MyBookings";
 import Favourite from "./pages/Favourite";
 import { Toaster } from "react-hot-toast";
+import AdminLogin from "./pages/AdminLogin";
 import Layout from "./pages/admin/Layout";
 import Dashboard from "./pages/admin/Dashboard";
 import AddShows from "./pages/admin/AddShows";
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/movies/:id/:date" element={<SeatLayout />} />
         <Route path="/my-bookings" element={<MyBookings />} />
         <Route path="/favourite" element={<Favourite />} />
+        <Route path="/admin-login" element={<AdminLogin />} />
 
         <Route path="/admin/*" element={<Layout />}>
           <Route index element={<Dashboard />} />

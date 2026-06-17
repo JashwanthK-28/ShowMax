@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { assets } from "../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
-import { SearchIcon, MenuIcon, XIcon, TicketPlus } from "lucide-react";
+import {
+  SearchIcon,
+  MenuIcon,
+  XIcon,
+  TicketPlus,
+  PowerIcon,
+} from "lucide-react";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 
 const Navbar = () => {
@@ -71,8 +77,15 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className="flex md:flex-1 items-center justify-end gap-6 md:gap-8">
+      <div className="flex md:flex-1 items-center justify-end gap-4 md:gap-5">
         <SearchIcon className="max-md:hidden w-6 h-6 cursor-pointer" />
+        <Link
+          to="/admin-login"
+          className="px-4 py-1 sm:px-6 sm:py-2 bg-gray-800 hover:bg-gray-700 transition rounded-full font-medium cursor-pointer border border-gray-600 text-sm flex items-center justify-center text-white"
+        >
+          <PowerIcon width={15} height={15} className="mr-2" />
+          Admin
+        </Link>
         {!user ? (
           <button
             onClick={openSignIn}
@@ -94,10 +107,9 @@ const Navbar = () => {
       </div>
 
       <MenuIcon
-        className="max-md:m1-4 md:hidden w-8 h-8 cursor-pointer"
+        className="md:hidden w-8 h-8 cursor-pointer max-md:ml-4"
         onClick={() => setIsOpen(!isOpen)}
       />
-      <div></div>
     </div>
   );
 };
