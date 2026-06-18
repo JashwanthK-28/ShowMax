@@ -10,25 +10,24 @@ const syncUserCreation = inngest.createFunction(
     triggers: [{ event: "clerk/user.created" }],
   },
   async ({ event }) => {
-    try {
-      const payload = event.data.data ? event.data.data : event.data;
-      console.log("Creation Payload:", payload);
-      const { id, first_name, last_name, email_addresses, image_url } = payload;
-      const email = email_addresses && email_addresses.length > 0
-        ? (typeof email_addresses[0] === 'string' ? email_addresses[0] : email_addresses[0].email_address)
-        : payload.email || "";
+    const payload = event.data;
+    const { id, first_name, last_name, email_addresses, image_url } = payload;
+    const email =
+      email_addresses && email_addresses.length > 0
+        ? typeof email_addresses[0] === "string"
+          ? email_addresses[0]
+          : email_addresses[0].email_address
+        : "";
 
-      const userData = {
-        _id: id,
-        email: email,
-        name: first_name + (last_name ? " " + last_name : ""),
-        image: image_url || "",
-      };
-      await User.create(userData);
-      console.log("User created successfully in DB:", id);
-    } catch (error) {
-      console.error("Error creating user in DB:", error);
-    }
+    const userData = {
+      _id: id,
+      email: email,
+      name: first_name + (last_name ? " " + last_name : ""),
+      image: image_url || "",
+    };
+
+    const user = await User.create(userData);
+    return { success: true, userId: user._id };
   },
 );
 
@@ -40,14 +39,10 @@ const syncUserDeletion = inngest.createFunction(
     triggers: [{ event: "clerk/user.deleted" }],
   },
   async ({ event }) => {
-    try {
-      const payload = event.data.data ? event.data.data : event.data;
-      const { id } = payload;
-      await User.findByIdAndDelete(id);
-      console.log("User deleted successfully from DB:", id);
-    } catch (error) {
-      console.error("Error deleting user in DB:", error);
-    }
+    const payload = event.data;
+    const { id } = payload;
+    await User.findByIdAndDelete(id);
+    return { success: true, userId: id };
   },
 );
 
@@ -57,25 +52,24 @@ const syncUserUpdation = inngest.createFunction(
     triggers: [{ event: "clerk/user.updated" }],
   },
   async ({ event }) => {
-    try {
-      const payload = event.data.data ? event.data.data : event.data;
-      console.log("Updation Payload:", payload);
-      const { id, first_name, last_name, email_addresses, image_url } = payload;
-      const email = email_addresses && email_addresses.length > 0
-        ? (typeof email_addresses[0] === 'string' ? email_addresses[0] : email_addresses[0].email_address)
-        : payload.email || "";
+    const payload = event.data;
 
-      const userData = {
-        _id: id,
-        email: email,
-        name: first_name + (last_name ? " " + last_name : ""),
-        image: image_url || "",
-      };
-      await User.findByIdAndUpdate(id, userData, { upsert: true });
-      console.log("User updated successfully in DB:", id);
-    } catch (error) {
-      console.error("Error updating user in DB:", error);
-    }
+    const { id, first_name, last_name, email_addresses, image_url } = payload;
+    const email =
+      email_addresses && email_addresses.length > 0
+        ? typeof email_addresses[0] === "string"
+          ? email_addresses[0]
+          : email_addresses[0].email_address
+        : "";
+
+    const userData = {
+      email: email,
+      name: first_name + (last_name ? " " + last_name : ""),
+      image: image_url || "",
+    };
+
+    await User.findByIdAndUpdate(id, userData, { upsert: true });
+    return { success: true, userId: id };
   },
 );
 
