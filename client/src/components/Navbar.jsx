@@ -9,21 +9,41 @@ import {
   PowerIcon,
 } from "lucide-react";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
-
+import { useAuth } from "@clerk/clerk-react";
+import { useAppContext } from "../context/AppContext";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useUser();
   const { openSignIn } = useClerk();
+  const { getToken } = useAuth();
+  const { axios } = useAppContext();
 
   const navigate = useNavigate();
 
-
-  const handleAdminClick = () => {
+  const handleAdminClick = async () => {
     if (!user) {
       openSignIn();
-    } else {
-      navigate("/admin");
+      return;
+    }
+
+    try {
+      const { data } = await axios.get("/api/admin/is-admin", {
+        headers: {
+          Authorization: `Bearer ${await getToken()}`,
+        },
+      });
+
+      if (data.success && data.isAdmin) {
+        navigate("/admin");
+      } else {
+        navigate("/");
+        toast.error("You are not authorized as an admin");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to verify admin access");
     }
   };
 
