@@ -2,12 +2,18 @@ import React from "react";
 import AdminNavbar from "../../components/admin/AdminNavbar";
 import AdminSidebar from "../../components/admin/AdminSidebar";
 import { Outlet, Navigate } from "react-router-dom";
+import { useAppContext } from "../../context/AppContext";
+import Loading from "../../components/Loading";
 
 const Layout = () => {
-  const token = localStorage.getItem("admin-token");
+  const { isAdmin, isAdminChecked } = useAppContext();
 
-  if (!token) {
-    return <Navigate to="/admin-login" replace />;
+  if (!isAdminChecked) {
+    return <Loading />;
+  }
+
+  if (!isAdmin) {
+    return <Navigate to="/" replace />;
   }
 
   return (

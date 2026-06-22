@@ -3,6 +3,12 @@ import { clerkClient } from "@clerk/express";
 export const protectAdmin = async (req, res, next) => {
   try {
     const { userId } = req.auth();
+    if (!userId) {
+      return res.json({
+        success: false,
+        message: "Not authorized: No session found",
+      });
+    }
 
     const user = await clerkClient.users.getUser(userId);
 
