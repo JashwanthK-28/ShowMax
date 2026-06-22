@@ -106,7 +106,9 @@ export const getShows = async (req, res) => {
     for (const show of shows) {
       if (show.movie && !seenMovieIds.has(show.movie._id.toString())) {
         seenMovieIds.add(show.movie._id.toString());
-        uniqueMovies.push(show.movie);
+        const movieObj = show.movie.toObject();
+        movieObj.showPrice = show.showPrice;
+        uniqueMovies.push(movieObj);
       }
     }
 

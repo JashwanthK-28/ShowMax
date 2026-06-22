@@ -1,6 +1,7 @@
 import { clerkClient } from "@clerk/express";
 import Booking from "../models/Booking.js";
 import Movie from "../models/Movie.js";
+import Show from "../models/Show.js";
 
 export const getUserBookings = async (req, res) => {
   try {
@@ -76,7 +77,27 @@ export const getFavouriteMovies = async (req, res) => {
     const favouriteMovies = user.privateMetadata.favourites || [];
 
     const movies = await Movie.find({ _id: { $in: favouriteMovies } });
-    res.json({ success: true, movies });
+    
+    // Find active shows for these movies to get their showPrice
+    const shows = await Show.find({
+      movie: { $in: favouriteMovies },
+      showDateTime: { $gte: new Date() }
+    }).sort({ showDateTime: 1 });
+
+    const moviePriceMap = {};
+    shows.forEach(show => {
+      if (!moviePriceMap[show.movie]) {
+        moviePriceMap[show.movie] = show.showPrice;
+      }
+    });
+
+    const moviesWithPrice = movies.map(movie => {
+      const movieObj = movie.toObject();
+      movieObj.showPrice = moviePriceMap[movie._id] || null;
+      return movieObj;
+    });
+
+    res.json({ success: true, movies: moviesWithPrice });
   } catch (error) {
     console.log("Error in getFavouriteMovies:", error);
     res.status(500).json({ success: false, message: error.message });

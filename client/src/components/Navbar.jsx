@@ -22,6 +22,8 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
+  const { favouriteMovies } = useAppContext();
+
   const handleAdminClick = async () => {
     if (!user) {
       openSignIn();
@@ -96,15 +98,17 @@ const Navbar = () => {
         >
           Releases
         </Link>
-        <Link
-          onClick={() => {
-            scrollTo(0, 0);
-            setIsOpen(false);
-          }}
-          to="/favourite"
-        >
-          Favourite
-        </Link>
+        {favouriteMovies.length > 0 && (
+          <Link
+            onClick={() => {
+              scrollTo(0, 0);
+              setIsOpen(false);
+            }}
+            to="/favourite"
+          >
+            Favourite
+          </Link>
+        )}
       </div>
 
       <div className="flex md:flex-1 items-center justify-end gap-4 md:gap-5">

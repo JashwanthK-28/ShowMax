@@ -8,7 +8,7 @@ import {
 const userRouter = express.Router();
 
 userRouter.get("/bookings", getUserBookings);
-userRouter.get("/update-favourite", updateFavourite);
+userRouter.post("/update-favourite", updateFavourite);
 userRouter.get("/favourites", getFavouriteMovies);
 
 export default userRouter;
