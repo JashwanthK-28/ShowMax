@@ -32,6 +32,11 @@ const stripeWebhooks = async (req, res) => {
           console.log(
             `Booking ${bookingId} marked as paid via checkout.session.completed`,
           );
+          // trigger confirmation email
+          await inngest.send({
+            name: "app/show.booked",
+            data: { bookingId },
+          });
         }
         break;
       }
@@ -48,14 +53,13 @@ const stripeWebhooks = async (req, res) => {
               isPaid: true,
               paymentLink: "",
             });
+            // trigger confirmation email
+            await inngest.send({
+              name: "app/show.booked",
+              data: { bookingId },
+            });
           }
         }
-
-        //inngest trigger to send booking confirmation email
-        await inngest.send({
-          name: "app/show.booked",
-          data: { bookingId },
-        });
         break;
       }
       default:
