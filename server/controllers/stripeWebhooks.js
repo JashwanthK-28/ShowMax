@@ -28,7 +28,9 @@ const stripeWebhooks = async (req, res) => {
             isPaid: true,
             paymentLink: "",
           });
-          console.log(`Booking ${bookingId} marked as paid via checkout.session.completed`);
+          console.log(
+            `Booking ${bookingId} marked as paid via checkout.session.completed`,
+          );
         }
         break;
       }
@@ -45,9 +47,14 @@ const stripeWebhooks = async (req, res) => {
               isPaid: true,
               paymentLink: "",
             });
-            console.log(`Booking ${bookingId} marked as paid via payment_intent.succeeded`);
           }
         }
+
+        //inngest trigger to send booking confirmation email
+        await inngest.send({
+          name: "app/show.booked",
+          data: { bookingId },
+        });
         break;
       }
       default:
