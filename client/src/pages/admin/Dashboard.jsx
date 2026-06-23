@@ -34,7 +34,7 @@ const Dashboard = () => {
     },
     {
       title: "Total revenue",
-      value: dashboardData.totalRevenue || "0",
+      value: currency + dashboardData.totalRevenue || "0",
       icon: BanknoteIcon,
     },
     {
