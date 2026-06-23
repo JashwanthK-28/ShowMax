@@ -182,10 +182,55 @@ const sendBookingConfirmationEmail = inngest.createFunction(
   },
 );
 
+const sendNewShowNotifications = inngest.createFunction(
+  {
+    id: "send-new-show-notifications",
+    triggers: [{ event: "app/show.added" }],
+  },
+  async ({ event }) => {
+    const { movieTitle } = event.data;
+    const users = await User.find({});
+
+    for (const user of users) {
+      const userEmail = user.email;
+      const userName = user.name;
+
+      const subject = `New Show Added "${movieTitle}" on Showmax`;
+      const body = `<div class="showmax-new-show" style="margin: 0; padding: 20px 0; font-family: 'Segoe UI', Roboto, Arial, sans-serif; background-color: #0d0d13; color: #ffffff; width: 100%; -webkit-font-smoothing: antialiased;">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 500px; margin: 0 auto; background-color: #14141f; border: 1px solid #222235; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+        
+        <tr>
+            <td align="center" style="background: linear-gradient(135deg, #e50914 0%, #9e060e 100%); padding: 25px 20px; text-align: center;">
+                <span style="background-color: #ffffff; color: #e50914; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 8px;">Just Added</span>
+                <h1 style="font-size: 22px; font-weight: 900; letter-spacing: 1px; color: #ffffff; margin: 0; text-transform: uppercase;">New Show Alert</h1>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="padding: 25px; text-align: center;">
+            <h2>Hi, ${userName}</h2><br/>
+                <h2 style="font-size: 20px; font-weight: 700; color: #ffffff; margin: 0 0 6px 0;">${movieTitle}</h2>                
+            </td>
+        </tr>
+    </table>
+</div>`;
+
+      await sendEmail({
+        to: userEmail,
+        subject,
+        body,
+      });
+    }
+
+    return { message: "Notification sent." };
+  },
+);
+
 export const functions = [
   syncUserCreation,
   syncUserDeletion,
   syncUserUpdation,
   releaseSeatsAndDeleteBooking,
   sendBookingConfirmationEmail,
+  sendNewShowNotifications,
 ];
