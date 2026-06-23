@@ -1,3 +1,4 @@
+import { inngest } from "../inngest/index.js";
 import Booking from "../models/Booking.js";
 import Show from "../models/Show.js";
 import stripe from "stripe";
@@ -65,7 +66,7 @@ export const createBooking = async (req, res) => {
     ];
 
     const session = await stripeInstance.checkout.sessions.create({
-      success_url: `${origin}/loading/my-bookings`,
+      success_url: `${origin}/loading/my-bookings?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/my-bookings`,
       line_items: line_items,
       mode: "payment",
@@ -77,6 +78,14 @@ export const createBooking = async (req, res) => {
 
     booking.paymentLink = session.url;
     await booking.save();
+
+    //run inngest scheduler function
+    await inngest.send({
+      name: "app/checkpayment",
+      data: {
+        bookingId: booking._id.toString(),
+      },
+    });
 
     res.json({ success: true, url: session.url });
   } catch (error) {
@@ -93,6 +102,37 @@ export const getOccupiedSeats = async (req, res) => {
     const occupiedSeats = Object.keys(showData.occupiedSeats);
 
     res.json({ success: true, occupiedSeats });
+  } catch (error) {
+    console.log(error.message);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+export const verifyBooking = async (req, res) => {
+  try {
+    const { sessionId } = req.body;
+    if (!sessionId) {
+      return res.json({ success: false, message: "Session ID is required" });
+    }
+
+    const stripeInstance = new stripe(process.env.STRIPE_SECRET_KEY);
+    const session = await stripeInstance.checkout.sessions.retrieve(sessionId);
+
+    if (session && session.payment_status === "paid") {
+      const bookingId = session.metadata.bookingId;
+      const booking = await Booking.findById(bookingId);
+      if (booking && !booking.isPaid) {
+        booking.isPaid = true;
+        booking.paymentLink = "";
+        await booking.save();
+        return res.json({
+          success: true,
+          message: "Payment verified successfully",
+        });
+      }
+    }
+
+    res.json({ success: false, message: "Payment not completed yet" });
   } catch (error) {
     console.log(error.message);
     res.json({ success: false, message: error.message });

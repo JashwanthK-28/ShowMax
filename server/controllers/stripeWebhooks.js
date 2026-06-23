@@ -19,18 +19,35 @@ const stripeWebhooks = async (req, res) => {
 
   try {
     switch (event.type) {
+      case "checkout.session.completed": {
+        const session = event.data.object;
+        const { bookingId } = session.metadata || {};
+
+        if (bookingId) {
+          await Booking.findByIdAndUpdate(bookingId, {
+            isPaid: true,
+            paymentLink: "",
+          });
+          console.log(`Booking ${bookingId} marked as paid via checkout.session.completed`);
+        }
+        break;
+      }
       case "payment_intent.succeeded": {
         const paymentIntent = event.data.object;
         const sessionList = await stripeInstance.checkout.sessions.list({
           payment_intent: paymentIntent.id,
         });
-        const sessioin = sessionList.data[0];
-        const { bookingId } = session.metadata;
-
-        await Booking.findByIdAndUpdate(bookingId, {
-          isPaid: true,
-          paymentLink: "",
-        });
+        if (sessionList && sessionList.data && sessionList.data.length > 0) {
+          const session = sessionList.data[0];
+          const { bookingId } = session.metadata || {};
+          if (bookingId) {
+            await Booking.findByIdAndUpdate(bookingId, {
+              isPaid: true,
+              paymentLink: "",
+            });
+            console.log(`Booking ${bookingId} marked as paid via payment_intent.succeeded`);
+          }
+        }
         break;
       }
       default:
@@ -38,7 +55,7 @@ const stripeWebhooks = async (req, res) => {
     }
     res.json({ received: true });
   } catch (error) {
-    console.error("Error");
+    console.error("Error in stripeWebhooks:", error);
     res.status(500).send("Webhook error");
   }
 };
