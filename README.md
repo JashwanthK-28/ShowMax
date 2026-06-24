@@ -251,10 +251,6 @@ ShowMax/
 
 ## 🌐 API Reference
 
-### Base URL
-
-- **Local:** `http://localhost:5000`
-- **Production:** Your Vercel deployment URL
 
 ### Show Routes — `/api/show`
 
@@ -290,13 +286,6 @@ ShowMax/
 | `POST` | `/update-favourite` | User | Toggle a movie in favourites |
 | `GET`  | `/favourites`       | User | Get user's favourite movies  |
 
-### Stripe Webhooks — `/api/stripe`
-
-Handles `checkout.session.completed` and `checkout.session.expired` events.
-
-### Inngest — `/api/inngest`
-
-Inngest function serve endpoint.
 
 ---
 
@@ -351,7 +340,7 @@ SMTP_PASSWORD=your-smtp-password
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
